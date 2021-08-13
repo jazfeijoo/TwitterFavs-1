@@ -1,0 +1,75 @@
+.App {
+  text-align: center;
+  color: rgb(27, 34, 56);
+}
+
+.App-logo {
+  height: 4vmin;
+  pointer-events: none;
+}
+
+/* @media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+} */
+
+.App-header {
+  background-color: #ffffff;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(27, 34, 56);
+}
+
+.Twitter-search-box {
+  color:rgb(27, 34, 56);
+  border:rgb(27, 34, 56);
+  padding: 20px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.Twitter-search-box label {
+  font-size: 25px;
+  margin-right: 15px
+}
+
+.Twitter-search-box input {
+  font-size: 20px;
+  color:rgb(27, 34, 56);
+  margin-right: 15px;
+  width: 250px
+}
+
+.Twitter-search-box button {
+background-color:rgb(4, 77, 161);
+width: 70px;
+height: 40px;
+border-radius: 15px;
+font-size: 15px;
+color: white;
+font-weight: bold;
+}
+
+
+.App-header-name {
+  padding-left: 30px;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+/* @keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
