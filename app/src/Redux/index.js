@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import SearchAuthorReducer from './searchAuthor';
 
 const appReducer = combineReducers({
-  searchAuthor: SearchAuthorReducer,
+  searchAuthor: SearchAuthorReducer
 
 });
 

@@ -12,12 +12,11 @@ const searchAuthor = (author) => {
 //const serverPORT4000 = axios.create({baseURL: 'http://localhost:4000'})
 
 export const fetchSearchAuthor = (searchState) => {
+  console.log('PASSED TO THUNK:',searchState)
   return async (dispatch) => {
     try {
         const searchScreenName = searchState['screen_name']
        const { data } = await axios.get(`http://localhost:4000/api/authors/${searchScreenName}`)
-       console.log('THIS IS DATA:', data);
-
        dispatch(searchAuthor(data))
     } catch (err) {
       console.log(err);

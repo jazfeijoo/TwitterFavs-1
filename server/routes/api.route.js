@@ -36,7 +36,6 @@ router.get('/authors/:screen_name', async (req, res, next) => {
   try {
     const searchScreenName = await client.get(`/users/lookup`, {screen_name: screen_name})
     const twitterAuthor = searchScreenName[0] //because user object gets returned in an array [{}]
-    console.log('OBJ RETURNED!',twitterAuthor)
     res.send(twitterAuthor);
   } catch (err){
     console.log('AUTHOR API ROUTE ERR:', err)
