@@ -18,18 +18,33 @@ router.get(`/`, async (req, res, next) => {
   res.send({ message: 'Ok api is working 🚀' });
 });
 
-//SEARCH FOR A TWITTER AUTHOR:
-router.get('/authors', async (req, res, next) => {
-  console.log('REQ BODY: ', req.query, 'google this')
+// //TESTING: SEARCH FOR A TWITTER AUTHOR:
+// router.get('/authors', async (req, res, next) => {
+//   console.log('REQ BODY: ', req.query, 'google this')
+//   try {
+//     const searchScreenName = await client.get(`/users/lookup`, {screen_name: "shakira"})
+//     console.log(searchScreenName)
+//     res.send(searchScreenName);
+//   } catch (err){
+//     console.log('/authors api route error:', err)
+//   }
+  
+// });
+
+router.get('/authors/:screen_name', async (req, res, next) => {
+  const screen_name = req.params.screen_name
   try {
-    const searchScreenName = await client.get(`/users/lookup`, {screen_name: "shakira"})
-    console.log(searchScreenName)
-    res.send(searchScreenName);
+    const searchScreenName = await client.get(`/users/lookup`, {screen_name: screen_name})
+    const twitterAuthor = searchScreenName[0] //because user object gets returned in an array [{}]
+    console.log('OBJ RETURNED!',twitterAuthor)
+    res.send(twitterAuthor);
   } catch (err){
-    console.log('/authors api route error:', err)
+    console.log('AUTHOR API ROUTE ERR:', err)
+    res.send({})
   }
   
 });
+
 //IF ADDED TO FAV LIST: show user info needed & record/add author to fav list db for that user... 
 router.get('/authors/show', async (req, res, next) => {
   try {

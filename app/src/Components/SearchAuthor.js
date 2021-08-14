@@ -3,13 +3,19 @@ import React from 'react';
  import { fetchSearchAuthor } from '../Redux/searchAuthor'
 
 class SearchAuthor extends React.Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
-            screen_name: ''
+            screen_name: '',
+
+
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount () {
+       console.log('PROPS @ MOUNT:',this.props)
     }
 
     handleChange(evt){
@@ -21,13 +27,15 @@ class SearchAuthor extends React.Component {
     handleSubmit(evt){
         evt.preventDefault();
         this.props.getSearchAuthor({...this.state})
+        console.log('after setting searchAuthor state:', this.state)
+        console.log('PROPS @ SUBMIT:', this.props)
     }  
 
     render() {
-        console.log('PROPS:' , this.prop)
-        console.log('STATE:' , this.state)
+        const author = this.props.searchAuthor || {}
         const {screen_name} = this.state
         const { handleChange, handleSubmit } = this;
+        console.log('PROPS.AUHTOR @ RENDER:', author)
         return (
             
             <section>
@@ -36,17 +44,18 @@ class SearchAuthor extends React.Component {
                         <input name="screen_name" onChange={handleChange} value={screen_name} /> 
                         <button type="submit" className="screen_name-button">Search</button>
                 </form>
+                    {author.name ? 'FOUND!' : 'NOT FOUND'}
             </section>
         )
     }
 
 }
 
-const mapState = (state) => {
-    return {
-        searchAuthor: state.searchAuthor
-    }
-  }
+ const mapState = (state) => {
+     return {
+         searchAuthor: state.searchAuthor
+     }
+   }
 
   const mapDispatchToProps = (dispatch) => {
     return {

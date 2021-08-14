@@ -14,10 +14,10 @@ const searchAuthor = (author) => {
 export const fetchSearchAuthor = (searchState) => {
   return async (dispatch) => {
     try {
-        console.log('thunk works: fetchingSearch Author...', searchState)
-        //, {screen_name: searchState}
-       const { data } = await axios.get('http://localhost:4000/api/authors')
-       console.log('DATA RECEIVED IN THUNK CALL: ', data)
+        const searchScreenName = searchState['screen_name']
+       const { data } = await axios.get(`http://localhost:4000/api/authors/${searchScreenName}`)
+       console.log('THIS IS DATA:', data);
+
        dispatch(searchAuthor(data))
     } catch (err) {
       console.log(err);
