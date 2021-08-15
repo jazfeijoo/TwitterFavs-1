@@ -1,11 +1,12 @@
 {
-  "name": "twitterfavs-1",
+  "name": "socialfavs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently 'cd app && npm start' 'cd server && npm run dev' "
+    "dev": "concurrently 'cd app && npm start' 'cd server && npm run dev' ",
+    "seed": "node server/seed.js"
   },
   "keywords": [],
   "author": "",

@@ -27,7 +27,7 @@
 
 #Home-page {
   margin-top: 70px;
-  color: rgb(4, 43, 95);
+  color: rgb(4, 28, 95);
   margin-left: 25%;
   text-align: left;
 }
@@ -36,6 +36,42 @@
   margin-left:27%;
   margin-bottom: 150px;
   color:rgb(11, 101, 185)
+}
+
+
+.Auth-box {
+  margin-top: 50px;
+  color:rgb(27, 34, 56);
+  border:rgb(27, 34, 56);
+  padding: 20px;
+  flex-direction: row;
+  margin: 15px;
+  font-size: 25px;
+  text-align: center;
+}
+
+.Auth-box input {
+  font-size: 20px;
+  margin-bottom:20px;
+  color:rgb(27, 34, 56);
+  margin-right: 15px;
+  width: 250px;
+}
+
+#password {
+  max-width: 215px;
+}
+
+#auth-button {
+  margin-top: 20px;
+    background-color:rgb(4, 77, 161);
+    width: 100px;
+    height: 35px;
+    border-radius: 20px;
+    border-width: 0cm;
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
 }
 
 .Twitter-search-box {

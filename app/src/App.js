@@ -4,6 +4,7 @@ import {
  NavLink
 } from 'react-router-dom'
 import SearchAuthor  from './Components/SearchAuthor'
+import { Login, Signup } from './Components/AuthForm'
 import Home from './Components/Home'
 
 function App() {
@@ -18,10 +19,13 @@ function App() {
           <nav>
           <NavLink to="/" style={{ marginLeft: '1rem', fontSize: '20px'}}>Home</NavLink>
           <NavLink to="/search" style={{ marginLeft: '1rem', fontSize: '20px' }}>Search</NavLink>
+          <NavLink to="/search" style={{ marginLeft: '1rem', fontSize: '20px' }}>Main</NavLink>
           <NavLink to="/login" style={{ marginLeft: '1rem', fontSize: '20px' }}>Login</NavLink>
-          <NavLink to="/login" style={{ marginLeft: '1rem', fontSize: '20px' }}>Sign up</NavLink>
+          <NavLink to="/signup" style={{ marginLeft: '1rem', fontSize: '20px' }}>Sign up</NavLink>
         </nav>
           <Route exact path="/search" component={SearchAuthor} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
           <Route exact path="/" component={Home} />
           </div>
     </div>
