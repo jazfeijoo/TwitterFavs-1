@@ -14,10 +14,10 @@ class SearchAuthor extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // componentDidUpdate() {
-    //     console.log('PROPS @ UPDATE:',this.state.screen_name.length)
+    componentDidUpdate() {
+        console.log('PROPS.SEARCH @ UPDATE SEARCH:',this.props.searchAuthor)
 
-    //   }
+      }
 
     handleChange(evt){
         this.setState({
@@ -71,9 +71,9 @@ class SearchAuthor extends React.Component {
      }
    }
 
-  const mapDispatchToProps = (dispatch) => {
+  const mapDispatchToProps = (dispatch, { history }) => {
     return {
-      getSearchAuthor: (screen_name) => dispatch(fetchSearchAuthor(screen_name))
+      getSearchAuthor: (screen_name) => dispatch(fetchSearchAuthor(screen_name, history))
     }
   }
 

@@ -4,6 +4,7 @@ import {
  NavLink
 } from 'react-router-dom'
 import SearchAuthor  from './Components/SearchAuthor'
+import Home from './Components/Home'
 
 function App() {
 
@@ -11,7 +12,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src="https://www.pinclipart.com/picdir/big/158-1588390_blue-twitter-logo-transparent-clipart.png" className="App-logo" alt="logo" />
-        <h3 className="App-header-name">TWITTER FAVS</h3>
+        <h3 className="App-header-name">SOCIAL FAVS</h3>        
       </header>
           <div>
           <nav>
@@ -21,6 +22,7 @@ function App() {
           <NavLink to="/login" style={{ marginLeft: '1rem', fontSize: '20px' }}>Sign up</NavLink>
         </nav>
           <Route exact path="/search" component={SearchAuthor} />
+          <Route exact path="/" component={Home} />
           </div>
     </div>
   );

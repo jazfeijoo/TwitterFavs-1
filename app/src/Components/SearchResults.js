@@ -1,29 +1,56 @@
 import React from 'react';
- import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import ShowTweets from './ShowTweets'
 
 
 class SearchResult extends React.Component {
-    // constructor(props){
-    //     super(props);
-    // }
+    constructor(){
+        super();
+        this.state = {
+            showTweets: false
+        }
+        this.handleTweet = this.handleTweet.bind(this);
+        this.handleList = this.handleList.bind(this);
+    }
+
+    handleTweet(evt){
+        evt.preventDefault();
+        this.setState({
+            showTweets: !this.state.showTweets
+        })
+        console.log('state after tweet button', this.state)
+        //figure out which submit!
+    }
+
+    handleList(evt){
+        //const screen_name = evt.target.name
+        //figure out which submit!
+    }
+
     render() {
+        const { handleTweet, handleList } = this;
         let author = this.props.searchAuthor
         let length = author.profile_image_url.length -11 //remove: _normal from img
         let img = author.profile_image_url.slice(0, length)
         img = img.concat('.jpg')
         return (
-            <div className="Twitter-Search-Results">
-                <h1>{author.name}</h1>
-                <img src={img} alt='not available'/>
-                <h3>@{author.screen_name}</h3>
-                <h3>Followers: {author.followers_count.toLocaleString('en-US')}</h3>
-                <a style={{color: 'rgb(214, 168, 83)'}} href={'https://twitter.com/'.concat(author.screen_name)}>{'https://twitter.com/'.concat(author.screen_name)}</a>
-                <div>
-                <button type="submit">TWEETS</button>    
-                <button type="submit">ADD TO LIST</button>
+            <div>
+                <div className="Twitter-Search-Results">
+                    <h1>{author.name}</h1>
+                    <img src={img} alt='not available'/>
+                    <h3>@{author.screen_name}</h3>
+                    <h3>Followers: {author.followers_count.toLocaleString('en-US')}</h3>
+                    <a style={{color: 'rgb(184, 208, 231)'}} href={'https://twitter.com/'.concat(author.screen_name)}>{'https://twitter.com/'.concat(author.screen_name)}</a>
+                    <div>
+                        <button onClick={handleTweet} name={author.screen_name} type="submit">{this.state.showTweets? "TWEETS ▲" : "TWEETS ▼"}</button>    
+                        <button onClick={handleList} type="submit">ADD TO LIST</button>
+                    </div>
                 </div>
-                
+                {this.state.showTweets? 
+                (<ShowTweets/>):
+                ('')}    
             </div>
+
         )
     }
 }

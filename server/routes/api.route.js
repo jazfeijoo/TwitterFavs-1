@@ -36,7 +36,8 @@ router.get('/authors/:screen_name', async (req, res, next) => {
   try {
     const searchScreenName = await client.get(`/users/lookup`, {screen_name: screen_name})
     const twitterAuthor = searchScreenName[0] //because user object gets returned in an array [{}]
-    res.send(twitterAuthor);
+    const twitterAuthorTweets = await client.get(`/statuses/user_timeline.json`,{screen_name: screen_name, include_rts: false})
+    res.send({'id': twitterAuthor.id, 'id_str': twitterAuthor.id_str,'name': twitterAuthor.name, 'screen_name': twitterAuthor.screen_name,'profile_image_url': twitterAuthor.profile_image_url,'followers_count': twitterAuthor.followers_count, 'tweets': twitterAuthorTweets});
   } catch (err){
     console.log('AUTHOR API ROUTE ERR:', err)
     res.send({})
@@ -49,7 +50,7 @@ router.get('/authors/show', async (req, res, next) => {
   try {
     const screen_name = 'shakira' //pass in screen_name as req
     const searchScreenName = await client.get(`/users/show`, {screen_name: screen_name})
-    res.send( {'twitter_id': searchScreenName.id, 'twitter_id_str': searchScreenName.id_str,'twitter_name': searchScreenName.name, 'twitter_screen_name': searchScreenName.screen_name,'twitter_profileImg': searchScreenName.profile_image_url,'twitter_followers': searchScreenName.followers_count});
+    res.send(searchScreenName);
   } catch (err){
     console.log('/authors api route error:', err)
   }
@@ -57,7 +58,7 @@ router.get('/authors/show', async (req, res, next) => {
 });
 //ONCE AUTHOR ADDED AS FAV, THEIR TWEETS POPULATE IN MAIN PAGE:
 //RETURNS ARRAY OF TWEET OBJECTS...
-router.get(`/authors/tweets`, async (req, res, next) => {
+router.get(`/authors/:screen_name/tweets`, async (req, res, next) => {
   try {
     const id = 44409004 //pass in twitter id once person has been found, to populate tweets in main page
     const authorTweets = await client.get(`/statuses/user_timeline.json`,{user_id: id, include_rts: false})
