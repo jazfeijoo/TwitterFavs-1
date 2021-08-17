@@ -1,30 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ShowTweets from './ShowTweets'
+import fetchAddToList from '../Redux/userList'
 
 
 class SearchResult extends React.Component {
     constructor(){
         super();
         this.state = {
-            showTweets: false
+            showTweets: false,
         }
         this.handleTweet = this.handleTweet.bind(this);
         this.handleList = this.handleList.bind(this);
     }
+
 
     handleTweet(evt){
         evt.preventDefault();
         this.setState({
             showTweets: !this.state.showTweets
         })
-        console.log('state after tweet button', this.state)
-        //figure out which submit!
     }
 
     handleList(evt){
-        //const screen_name = evt.target.name
-        //figure out which submit!
+        evt.preventDefault();
+        console.log(this.props.searchAuthor)
+        this.props.addToList(this.props.searchAuthor)
     }
 
     render() {
@@ -58,10 +59,17 @@ class SearchResult extends React.Component {
 const mapState = (state) => {
     return {
         searchAuthor: state.searchAuthor,
+        auth: state.auth
 
     }
   }
 
-export default connect(mapState, null)(SearchResult)
+  const mapDispatchToProps = (dispatch, { history }) => {
+    return {
+        addToList: (author) => dispatch(fetchAddToList(author)),
+    }
+  }
+
+export default connect(mapState, mapDispatchToProps)(SearchResult)
 
  

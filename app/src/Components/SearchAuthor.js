@@ -1,6 +1,6 @@
 import React from 'react';
  import { connect } from 'react-redux';
- import { fetchSearchAuthor } from '../Redux/searchAuthor'
+ import { fetchSearchAuthor, fetchClearSearchAUthor } from '../Redux/searchAuthor'
  import SearchResult  from './SearchResults'
 
 class SearchAuthor extends React.Component {
@@ -14,10 +14,13 @@ class SearchAuthor extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidUpdate() {
-        console.log('PROPS.SEARCH @ UPDATE SEARCH:',this.props.searchAuthor)
+    componentDidMount() {
+        if (this.props.searchAuthor.name){
+            this.props.clearSearchAuthor()
+        }
+        console.log(this.props)
+    }
 
-      }
 
     handleChange(evt){
         this.setState({
@@ -67,13 +70,15 @@ class SearchAuthor extends React.Component {
 
  const mapState = (state) => {
      return {
-         searchAuthor: state.searchAuthor
+         searchAuthor: state.searchAuthor,
+         auth: state.auth
      }
    }
 
   const mapDispatchToProps = (dispatch, { history }) => {
     return {
-      getSearchAuthor: (screen_name) => dispatch(fetchSearchAuthor(screen_name, history))
+      getSearchAuthor: (screen_name) => dispatch(fetchSearchAuthor(screen_name, history)),
+      clearSearchAuthor: () => dispatch(fetchClearSearchAUthor())
     }
   }
 

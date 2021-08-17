@@ -22,7 +22,11 @@ const User = db.define('user', {
   name: {
     type: Sequelize.STRING,
     allowNull: false
-  }
+  },
+  userFavs: {
+    type: Sequelize.ARRAY(Sequelize.JSON),
+    default: []
+}
 })
 
 module.exports = User

@@ -2,6 +2,8 @@ const router = require('express').Router()
 const { models: {User }} = require('../db')
 module.exports = router
 
+const client = require('../routes/api.route')
+
 router.post('/login', async (req, res, next) => {
     console.log('reached the api route...! BODY:', req.body)
   try {
@@ -23,6 +25,16 @@ router.post('/signup', async (req, res, next) => {
       next(err)
     }
   }
+})
+
+router.put('/:userId/:authorId', async (req, res, next) => {
+try {
+  const user = await User.findByPk(req.params.userId)
+  const author = await client.get(`/users/lookup`, {id: authorId})
+  console.log('USER:', user, 'AUTHOR', author)
+} catch (err) {
+  next(err)
+}
 })
 
 router.get('/me', async (req, res, next) => {

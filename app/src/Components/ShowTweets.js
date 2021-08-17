@@ -12,7 +12,7 @@ class ShowTweets extends React.Component {
     render() {
         const author = this.props.searchAuthor
         const tweets = author.tweets.map( tweet => (
-          <div id="Twitter-tweets" >
+          <div id="Twitter-tweets" key={tweet.id}>
                 <h3>{tweet.text}</h3>
                 <h5>{tweet.created_at.slice(0,16)}</h5>
           </div>
@@ -22,7 +22,6 @@ class ShowTweets extends React.Component {
             <div id="Twitter-tweets-list">
              {tweets}
             </div>
-
         )
     }
 }

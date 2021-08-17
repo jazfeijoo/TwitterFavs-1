@@ -7,7 +7,7 @@ import {authenticate} from '../Redux/auth'
  */
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
-  console.log('ERROR:',error);
+ // console.log('PROPS IN AUTH FORM:', this.props);
   return (
     <div className="Auth-box">
       <form onSubmit={handleSubmit} name={name}>
@@ -26,6 +26,7 @@ const AuthForm = props => {
         <div>
           <button type="submit" id="auth-button">{displayName}</button>
         </div>
+        {error && error.response && <div> {error.response.data} </div> }
       </form>
     </div>
   )

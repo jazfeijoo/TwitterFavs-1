@@ -1,11 +1,18 @@
 import axios from 'axios'
 
 const SEARCH_AUTHOR = 'SEARCH_AUTHOR'
+const CLEAR_AUTHOR = 'CLEAR_AUTHOR'
 
 const searchAuthor = (author) => {
   return {
     type: SEARCH_AUTHOR,
     author
+  }
+};
+
+const clearAuthor = () => {
+  return {
+    type: CLEAR_AUTHOR,
   }
 };
 
@@ -24,6 +31,18 @@ export const fetchSearchAuthor = (searchState, history) => {
   }
 };
 
+export const fetchClearSearchAUthor = () => {
+  return async (dispatch) => {
+    try {
+       dispatch(clearAuthor())
+    } catch (err) {
+      console.log(err);
+    }
+  }
+};
+
+
+
 // Take a look at app/redux/index.js to see where this reducer is
 
 const initialState = {};
@@ -32,6 +51,8 @@ export default function SearchAuthorReducer(state = initialState, action) {
   switch (action.type){
     case SEARCH_AUTHOR:
       return action.author
+    case CLEAR_AUTHOR:
+      return initialState  
     default:
       return state;
   }

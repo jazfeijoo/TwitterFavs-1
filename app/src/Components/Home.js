@@ -1,9 +1,12 @@
 import React from 'react';
- import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 
 class Home extends React.Component {
   
+    componentDidMount(){
+        console.log('HOME: ',this.props)
+    }
 
     render() {
   
@@ -22,11 +25,7 @@ class Home extends React.Component {
                     <br></br>The goal of this app is help users weed out the content that they are fed on their social media accounts
                     <br></br>Saves time: No more endless scrolling 
                     <br></br>Saves stress: The amount of data we consume on daily basis cannot be healthy 
-                  
-
-
-
-
+                
                 </h2>
             </div>
         )
@@ -36,7 +35,8 @@ class Home extends React.Component {
 
  const mapState = (state) => {
      return {
-         searchAuthor: state.searchAuthor
+         searchAuthor: state.searchAuthor,
+         auth: state.auth
      }
    }
 
