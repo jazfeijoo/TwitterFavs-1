@@ -1,38 +1,41 @@
-0. set up:
-    1. backend:  
-        npm install -g express-draft
-        exp folderName 
-        (i.e. exp server)
-    2. frontend: 
-        npx create-react-app folderName --use-npm 
-        (i.e. npx create-react-app app --use-npm)
-   * Dependencies are now included for both backend & front end :p
-   3. npm init i concurrently
-   * since backend and frontend are running separately, we use concurrently to be able to run both
-   4. add package.json script:
-        "dev": "concurrently 'cd app && npm start' 'cd server && npm run dev' "
-    5. In app/src -> delete unnecessary files...
+# SOCIALFAVS
 
-//TO SEARCH FOR AUTHOR BY SCREENNAME AND RETURN: [{id, id_str, name, screen_name, etc...}]
-// https://api.twitter.com/1.1/users/lookup.json?screen_name=${screen_name}
-//https://api.twitter.com/2/users/by/username/USER_NAME
+## Description
 
-//TO SHOW AUTHOR BY SCREENNAME:
-// 'https://api.twitter.com/1.1/users/show.json?screen_name=twitterdev'
+An app that lets you choose your top favorite accounts to show on your feed. All irrelevant content is removed so that you spend less time mindlessly scrolling! 
 
-// EX: {
-//     "id": 813286,
-//     "id_str": "813286",
-//     "name": "Barack Obama",
-//     "screen_name": "BarackObama",
-//     "location": "Washington, DC",
-//     "description": "Dad, husband, President, citizen.", etc...
+## Building 
 
-//ONCE AUTHOR GRABBED, SEARCH FOR THEIR TWEETS: 
-https://api.twitter.com/1.1/search/tweets.json?q=from%3A${screen_name}
-//&result_type=recent
-//&count=3 (is the max count therefore it returns 2 tweets)
+npm install
+npm init i concurrently
 
-//EXAMPLE: https://api.twitter.com/1.1/search/tweets.json?q=from%3Ashakira&count=3&result_type=recent/
+## Dev Test 
+
+npm run dev
+
+## Tech Stack 
+
+* React framework for web applications
+* React-Redux for state management
+* Express.js for backend server routes 
+* Concurrently to run backend and frontend separately
+* Twitter Search API for accessing social account/feed data 
 
 
+## Next Steps
+
+* Add database (users, favlists)
+* Implement user account security (login, sign-up, logout)
+* Complete navigation bar routing 
+* Add favlist component
+* Add current feed component 
+
+## Notes
+
+I decided to create this web application because:
+
+  1. I believe there needs to be a better solution for tackling the information overload issue without completely blocking off social media apps
+
+  2.  I wanted to run the back-end and front-end separately in order to better understand their differences in terms of setup and bugs. 
+
+  3. Lastly, I hope to continue to develop my skills (React, APIs, State management, Security) as a software engineer 
